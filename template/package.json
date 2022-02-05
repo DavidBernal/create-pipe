@@ -9,7 +9,7 @@
     "{{pipeName}}": "./bin/main.js"
   },
   "dependencies": {
-    "through2": "^3.0.1",
+    "getopts": "^2.3.0",
     "pkg": "^4.4.0"
   }
 }

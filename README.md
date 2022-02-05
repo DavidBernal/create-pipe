@@ -1,18 +1,21 @@
 # create-pipe
-Simple project to create fasty linux pipes with NodeJS.
+
+Simple project to create fasty linux pipes with NodeJS using async iterators.
 
 ## How to use
 
 Create the pipe
+
 ```
 npx create-pipe [name]
 
-// or 
+// or
 
 yarn create pipe [name]
 ```
+
 Now, go to `[name]/pipe.js` and code your pipe with javascript.
 
-At finish, `npm install -g` to test locally or `npm run build` to generate binaries. They will be in `dist/` 
+At finish, `npm install -g` to test locally or `npm run build` to generate binaries. They will be in `dist/`
 
-*Personal tip: I usually create a ~/bin folder and add it to PATH in order to save all binaries*
+_Personal tip: I usually create a ~/bin folder and add it to PATH in order to save all binaries_

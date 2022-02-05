@@ -3,9 +3,12 @@
   "bin": {
     "create-pipe": "./bin/create-pipe.js"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "index.js",
   "repository": "git@github.com:DavidBernal/create-pipe.git",
   "author": "David Bernal <dbl1987@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "sade": "^1.8.1"
+  }
 }

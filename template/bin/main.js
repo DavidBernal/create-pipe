@@ -1,17 +1,32 @@
 #!/usr/bin/env node
-const through2 = require('through2');
+
+// @ts-nocheck
+
+const { Readable } = require('stream');
+const getopts = require('getopts');
 const pipe = require('../pipe');
 
-const args = process.argv.slice(2);
+const options = getopts(process.argv.slice(2), {
+  alias: pipe?.alias || {},
+});
 
-const transform = through2((chunk, enc, callback) =>
-  pipe(
-    chunk,
-    enc,
-    ...args
-  )
-    .then(result => callback(null, result))
-    .catch(err => callback(err))
-);
+let stream = process.stdin;
+if (!process.stdin.isTTY) {
+  // if not isTTY, then create a infinite stream. It emits a chunk every 100ms.
+  let i = 0;
+  stream = new Readable({
+    read() {
+      setTimeout(() => {
+        this.push((++i).toString());
+      }, 100);
+    },
+  });
+}
 
-process.stdin.pipe(transform).pipe(process.stdout);
+const p = pipe(stream, process.stdin.isTTY, options);
+
+(async () => {
+  for await (const chunk of p) {
+    process.stdout.write(chunk);
+  }
+})();
