@@ -11,8 +11,8 @@ const options = getopts(process.argv.slice(2), {
 });
 
 let stream = process.stdin;
-if (!process.stdin.isTTY) {
-  // if not isTTY, then create a infinite stream. It emits a chunk every 100ms.
+if (process.stdin.isTTY) {
+  // if isTTY, then create a infinite stream. It emits a chunk every 100ms.
   let i = 0;
   stream = new Readable({
     read() {
